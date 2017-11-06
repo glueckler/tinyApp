@@ -1,0 +1,14 @@
+<% include ./_head %>
+<% include ./_header%>
+
+<%include ./_create-url%>
+<section class="urls-list">
+  <ul>
+    <% for ( url of shortUrlsList ) { -%>
+      <li><a href="<%= url %>/editurl"><%=url%></a></li>
+    <% } -%>
+  </ul>
+</section>
+
+<%include ./_footer%>
+
