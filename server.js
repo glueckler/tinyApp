@@ -94,4 +94,6 @@ app.get('/clear', (req, res) => {
   res.send('cleared')
 })
 
-app.listen(9999)
+const PORT = process.env.PORT || 9999;
+
+app.listen(PORT)
