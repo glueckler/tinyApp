@@ -1,13 +1,28 @@
 <% include ./_head %>
 <% include ./_header%>
 
-<%include ./_create-url%>
+<% if (locals.usr) { -%>
+  <section> <%include ./_create-url%> </section>
+<% } -%>
 <section class="urls-list">
-  <ul>
-    <% for ( url of shortUrlsList ) { -%>
-      <li><a href="<%= url %>/editurl"><%=url%></a></li>
-    <% } -%>
-  </ul>
+  <div class="urls-all">
+    <h2>All URLs</h2>
+    <ul>
+      <% for ( url of shortUrlsList.list ) { -%>
+        <li><a href="<%= url %>/editurl"><%=url%></a></li>
+      <% } -%>
+    </ul>
+  </div>
+  <% if (shortUrlsList.usrList) { -%>
+    <div class="urls-user">
+      <h2>Personal URLs</h2>
+      <ul>
+        <% for ( url of shortUrlsList.usrList ) { -%>
+          <li><%= url %></li>
+        <% } -%>
+      </ul>
+    </div>
+  <% } -%>
 </section>
 
 <%include ./_footer%>

@@ -4,7 +4,7 @@ const siteURL   = process.env.SITE_URL;
 require('dotenv').config()
 
 
-function fn(data) {
+function tinyFn(data) {
   const tinyFn = {}
   const users = data.users
   const urls = data.urls
@@ -13,24 +13,35 @@ function fn(data) {
     return siteURL + key
   }
 
-  tinyFn.shortUrlsList = function() {
+  tinyFn.shortUrlsList = function(usr) {
     const list = []
+    let usrList;
     for (url in data.urls) {
       url = data.urls[url]
+      if (usr && url.userLink === usr.id) {
+        usrList = usrList || []
+        usrList.push(tinyFn.shortUrl(url.urlId))
+        continue
+      }
       list.push(tinyFn.shortUrl(url.urlId))
     }
-    return list
+    return {
+      usrList,
+      list
+    }
   }
 
   tinyFn.getUrlObj = function(id) {
     return urls[id]
   }
 
-  tinyFn.createUrl = function(longURL) {
+  tinyFn.createUrl = function(longURL, userLink) {
     const id = rndStr.generate(5)
+    console.log(userLink)
     urls[id] = {
+      userLink,
       longURL,
-      urlId: id
+      urlId: id,
     }
     return urls[id]
   }
@@ -89,7 +100,7 @@ function fn(data) {
   return tinyFn
 }
 
-module.exports = fn
+module.exports = tinyFn
 
 
 

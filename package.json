@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js localhost 9999"
+    "dev:server": "nodemon server.js localhost 9999",
+    "dev:watchCss": "chokidar 'styles/**/*.css' -c 'npm run css:buildDev'",
+    "css:buildDev": "postcss styles/styles.css -c ./postcss.config.js -o public/styles/styles.css",
+    "dev": "run-p dev:*"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +21,13 @@
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "chokidar": "^1.7.0",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.2",
+    "postcss": "^6.0.14",
+    "postcss-cli": "^4.1.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "postcss-load-config": "^1.2.0"
   }
 }

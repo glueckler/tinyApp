@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express   = require('express')
 const app       = require('express')()
-const fn        = require('./fn')
+const fn        = require('./tinyFn')
 const body      = require('body-parser')
 const cookieP   = require('cookie-parser')
 
@@ -21,12 +21,13 @@ app.get('/', (req, res) => {
 })
 
 app.get('/urls', (req, res) => {
-  const shortUrlsList = tinyFn.shortUrlsList()
+  const shortUrlsList = tinyFn.shortUrlsList(res.locals.usr)
   res.render('urls', {shortUrlsList, urls: tinyFn.urls})
 })
 
 app.post('/urls', (req, res) => {
-  tinyFn.createUrl(req.body.url)
+  console.log(res.locals.usr)
+  tinyFn.createUrl(req.body.url, res.locals.usr.id)
   res.redirect('/')
 })
 
@@ -37,7 +38,6 @@ app.get('/:url/editurl', (req, res) => {
 })
 
 app.post('/:url/editurl', (req, res) => {
-  console.log(req.body.edit)
   tinyFn.editUrl(req.params.url, req.body.edit)
   res.redirect(`/${req.params.url}/editurl`)
 })

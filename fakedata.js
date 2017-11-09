@@ -2,12 +2,24 @@ module.exports = {
   urls: {
     "7gh1h": {
       "longURL": "https://google.ca",
-      "urlId": "7gh1h"
+      "urlId": "7gh1h",
+      "userLink": "rdsgz"
 
     },
     "KWQtM": {
       "longURL": "https://ello.co",
-      "urlId": "KWQtM"
+      "urlId": "KWQtM",
+      "userLink": "rdsgz"
+    },
+    "KWdds": {
+      "longURL": "https://yournewhome.com",
+      "urlId": "KWdds",
+      "userLink": "asdfg"
+    },
+    "KWTTh": {
+      "longURL": "https://hotmail.com",
+      "urlId": "KWTTh",
+      "userLink": "asdfg"
     }
   },
   users: {
