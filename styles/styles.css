@@ -1,8 +1,41 @@
+@import "./normalize.css";
+
+$background-color: #ffff00;
+
+
 body {
-  background: color;
+  background: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  display: block;
 }
 
 .container {
-  width: 900px;
   margin: 0 auto;
+  border: 2px solid #ddd;
+}
+
+.login-form {
+
+  &__input {
+    width: 200px;
+    display: block;
+    margin: 0 auto 1.5em;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    text-align: center;
+  }
 }

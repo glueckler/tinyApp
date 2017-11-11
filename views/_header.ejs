@@ -6,12 +6,10 @@
       <input type="submit" value="logout">
     </form>
   <% } else { -%>
-    <div class="login-forms">
+    <div class="login-form">
       <form action="/login" method="POST">
-        <label for="email">Email</label>
-        <input type="text" name="email" placeholder="you@email.com">
-        <label for="password">PassWord</label>
-        <input type="password" name="password">
+        <input class="login-form__input" type="text" name="email" placeholder="you@email.com">
+        <input class="login-form__input" type="password" name="password" placeholder="password">
         <input type="submit" value="login">
       </form>
       <a href="/register">REGISTER</a>

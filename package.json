@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "nodemon server.js localhost 9999",
-    "dev:watchCss": "chokidar 'styles/**/*.css' -c 'npm run css:buildDev'",
-    "css:buildDev": "postcss styles/styles.css -c ./postcss.config.js -o public/styles/styles.css",
-    "dev": "run-p dev:*"
+    "dev:server": "nodemon server.js localhost 3000",
+    "dev:watchCss": "chokidar 'styles/**/*.css' -c 'npm run css:buildDev && npm run heart'",
+    "dev:bs": "./node_modules/.bin/browser-sync start -c ./bs-config.js",
+    "css:buildDev": "postcss styles/styles.css -o public/styles/styles.css -c ./postcss.config.js",
+    "dev": "run-p dev:*",
+    "heart": "echo '<3\n'"
   },
   "author": "",
   "license": "ISC",
@@ -21,13 +23,18 @@
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.13",
     "chokidar": "^1.7.0",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.2",
     "postcss": "^6.0.14",
     "postcss-cli": "^4.1.1",
     "postcss-cssnext": "^3.0.2",
+    "postcss-hexrgba": "^1.0.0",
     "postcss-import": "^11.0.0",
-    "postcss-load-config": "^1.2.0"
+    "postcss-load-config": "^1.2.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^2.1.2",
+    "postcss-simple-vars": "^4.1.0"
   }
 }
