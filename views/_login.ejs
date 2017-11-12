@@ -1,0 +1,15 @@
+<% if (locals.usr) { -%>
+  <div>Helloooooo <%= usr.name %></div>
+  <form action="/logout" method="POST">
+    <input type="submit" value="logout">
+  </form>
+<% } else { -%>
+  <div class="login-form">
+    <form action="/login" method="POST">
+      <input class="login-form__input" type="text" name="email" placeholder="email">
+      <input class="login-form__input" type="password" name="password" placeholder="password">
+      <input class="login-form__button" type="submit" value="login">
+    </form>
+    <a href="/register">REGISTER</a>
+  </div>
+<% } -%>

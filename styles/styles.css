@@ -1,17 +1,34 @@
 @import "./normalize.css";
 
-$background-color: #ffff00;
+$bg-color: #6eb5a1;
+$font-color-main: #eee;
+
+@define-mixin am {
+  @media (max-width: 600px) {
+    @mixin-content;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    border-bottom-color: $bg-color;
+  }
+  50% {
+    border-bottom-color: $font-color-main;
+  }
+  100% {
+    border-bottom-color: $bg-color;
+  }
+}
 
 
 body {
-  background: $background-color;
+  color: $font-color-main;
+  text-align: center;
+  background: $bg-color;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-h1, h2 {
-  text-align: center;
 }
 
 ul {
@@ -22,20 +39,54 @@ li {
   display: block;
 }
 
+a {
+  text-decoration: none;
+  color: $font-color-main;
+}
+
 .container {
   margin: 0 auto;
-  border: 2px solid #ddd;
+
+  @mixin am {
+    width: 100%;
+  }
 }
 
 .login-form {
 
   &__input {
-    width: 200px;
+    min-width: 100px;
+    border-color: transparent;
     display: block;
     margin: 0 auto 1.5em;
+    text-align: center;
+    caret-color: transparent;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid;
+      animation: pulse 2s infinite;
+
+      &::-webkit-input-placeholder {
+      text-align: center;
+      opacity: 1;
+      transition: all 1s ease-out;
+
+      }
+
+    }
   }
 
-  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  &__button {
+    color: $font-color-main;
+    background: transparent;
+    border: solid 2px $font-color-main;
+  }
+
+  ::-webkit-input-placeholder {
+    color: $font-color-main;
     text-align: center;
+    opacity: .5;
   }
 }
