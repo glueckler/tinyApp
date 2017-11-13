@@ -1,16 +1,18 @@
 require('dotenv').config()
 const express   = require('express')
 const app       = require('express')()
-const fn        = require('./tinyFn')
+const fn        = require('./api/tinyFn')
 const body      = require('body-parser')
 const cookieP   = require('cookie-parser')
+const morgan    = require('morgan')
 
-const data  = require('./fakedata')
+const data  = require('./db/fakedata')
 const tinyFn    = fn(data)
 
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
+app.use(morgan('tiny'))
 app.use(body.urlencoded({extended: true}))
 app.use(cookieP())
 
@@ -26,7 +28,6 @@ app.get('/urls', (req, res) => {
 })
 
 app.post('/urls', (req, res) => {
-  console.log(res.locals.usr)
   tinyFn.createUrl(req.body.url, res.locals.usr.id)
   res.redirect('/')
 })
@@ -57,7 +58,7 @@ app.post('/login', (req, res) => {
     tinyFn.setCookie(res, user.id)
     res.redirect('/')
   } else {
-    res.status(404)
+    res.redirect('/')
   }
 })
 

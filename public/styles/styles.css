@@ -514,6 +514,7 @@ a {
   }
 
 .login-form__input {
+    color: #eee;
     min-width: 100px;
     border-color: transparent;
     display: block;
@@ -537,14 +538,34 @@ a {
   transition: all 1s ease-out;
 }
 
-.login-form__button {
-    color: #eee;
-    background: transparent;
-    border: solid 2px #eee;
-  }
-
 .login-form ::-webkit-input-placeholder {
     color: #eee;
     text-align: center;
     opacity: .5;
   }
+
+.btn {
+  padding: 5px 0;
+  width: 4em;
+  display: inline-block;
+  color: #eee;
+  background: transparent;
+  border: solid 2px #eee;
+  -webkit-transition: all .15s ease-out;
+  transition: all .15s ease-out;
+  cursor: pointer
+}
+
+.btn:hover {
+  background: rgba(255,255,255, 0.2);
+}
+
+
+
+
+
+
+
+
+
+

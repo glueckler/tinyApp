@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "nodemon server.js localhost 3000",
+    "dev:server": "nodemon --watch api --watch server.js server.js 3000",
     "dev:watchCss": "chokidar 'styles/**/*.css' -c 'npm run css:buildDev && npm run heart'",
     "dev:bs": "./node_modules/.bin/browser-sync start -c ./bs-config.js",
     "css:buildDev": "postcss styles/styles.css -o public/styles/styles.css -c ./postcss.config.js",
@@ -20,6 +20,7 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "randomstring": "^1.1.5"
   },
   "devDependencies": {

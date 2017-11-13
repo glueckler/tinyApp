@@ -7,9 +7,14 @@ $(() => {
   }
 
   $('.login-form__input')
-      // event handler
-      .keyup(resizeInput)
-      // resize on page load
-      .each(resizeInput)
+    .keyup(resizeInput)
+    .each(resizeInput)
+
+  $('[data-login="submit"]')
+    .on('click', login)
 
 })
+
+function login() {
+  $('.login-form > form').submit()
+}

@@ -6,10 +6,10 @@
 <% } else { -%>
   <div class="login-form">
     <form action="/login" method="POST">
-      <input class="login-form__input" type="text" name="email" placeholder="email">
-      <input class="login-form__input" type="password" name="password" placeholder="password">
-      <input class="login-form__button" type="submit" value="login">
+      <input class="login-form__input" data-login="email" type="text" name="email" placeholder="email" autocomplete="off">
+      <input class="login-form__input" data-login="password" type="password" name="password" placeholder="password" autocomplete="off">
     </form>
-    <a href="/register">REGISTER</a>
+    <div class="btn" data-login="submit">Login</div>
+    <a href="/register"><div class="btn">Register</div></a>
   </div>
 <% } -%>

@@ -55,6 +55,7 @@ a {
 .login-form {
 
   &__input {
+    color: $font-color-main;
     min-width: 100px;
     border-color: transparent;
     display: block;
@@ -78,15 +79,34 @@ a {
     }
   }
 
-  &__button {
-    color: $font-color-main;
-    background: transparent;
-    border: solid 2px $font-color-main;
-  }
-
   ::-webkit-input-placeholder {
     color: $font-color-main;
     text-align: center;
     opacity: .5;
   }
 }
+
+.btn {
+  padding: 5px 0;
+  width: 4em;
+  display: inline-block;
+  color: $font-color-main;
+  background: transparent;
+  border: solid 2px $font-color-main;
+  transition: all .15s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(#fff, 0.2)
+  }
+}
+
+
+
+
+
+
+
+
+
+
