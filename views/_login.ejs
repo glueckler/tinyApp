@@ -12,4 +12,7 @@
     <div class="btn" data-login="submit">Login</div>
     <a href="/register"><div class="btn">Register</div></a>
   </div>
+  <% if (locals.loginError) {%>
+    <div style="color: red; margin-top: 7px;"><%= locals.loginError[0] %></div>
+  <%}%>
 <% } -%>
