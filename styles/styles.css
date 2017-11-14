@@ -68,6 +68,10 @@ footer {
   margin-top: 1em;
 }
 
+.border-bottom {
+  @mixin border-bottom;
+}
+
 .container {
   margin: 0 auto;
 
@@ -83,6 +87,11 @@ footer {
 .urls-list {
   @mixin border-bottom;
 
+  &__short-url {
+    font-weight: 200;
+    font-size: .4em;
+  }
+
   li {
     padding-top: .3em;
     transition: all .1s ease-out;
@@ -92,6 +101,10 @@ footer {
       border-color: rgba($font-color-main, 0.5);
       transform: scale(1.1);
     }
+  }
+
+  &__url {
+    margin-top: .5em;
   }
 }
 
@@ -152,6 +165,14 @@ footer {
   &:hover {
     background: rgba(#fff, 0.2);
     opacity: 1;
+  }
+}
+
+.error {
+
+  &__message {
+    color: red;
+    margin-top: 7px;
   }
 }
 

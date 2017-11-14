@@ -8,6 +8,9 @@
     <input class="form__input" data-form-input="register" type="password" name="password" placeholder="password" autocomplete="off">
   </form>
   <div class="btn" data-form-button="register">Register</div>
+  <% if (locals.registerError) { %>
+    <div class="error__message"><%= registerError %></div>
+  <%}%>
 </div>
 
 <%include ./_footer%>

@@ -1,23 +1,23 @@
 module.exports = {
   urls: {
     "7gh1h": {
-      "longURL": "https://google.ca",
+      "longUrl": "google.ca",
       "urlId": "7gh1h",
       "userLink": "rdsgz"
 
     },
     "KWQtM": {
-      "longURL": "https://ello.co",
+      "longUrl": "ello.co",
       "urlId": "KWQtM",
       "userLink": "rdsgz"
     },
     "KWdds": {
-      "longURL": "https://yournewhome.com",
+      "longUrl": "yournewhome.com",
       "urlId": "KWdds",
       "userLink": "asdfg"
     },
     "KWTTh": {
-      "longURL": "https://hotmail.com",
+      "longUrl": "hotmail.com",
       "urlId": "KWTTh",
       "userLink": "asdfg"
     }

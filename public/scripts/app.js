@@ -1,14 +1,6 @@
+let initFormWidth
+
 $(() => {
-
-  function formInput(input) {
-    let width
-    width = Math.floor($(this).val().length * 8.4)
-    $(this).css('width', width)
-    if (input.which === 13) {
-      submitForm($(this).attr('data-form-input'))
-    }
-
-  }
 
   $('.form__input')
     .keyup(formInput)
@@ -18,6 +10,15 @@ $(() => {
     .on('click', login)
 
 })
+
+function formInput(input) {
+  let width = $(this).val().length * 9.5
+  initFormWidth = initFormWidth || width
+  $(this).css('width', initFormWidth > width ? initFormWidth : width)
+  if (input.which === 13) {
+    submitForm($(this).attr('data-form-input'))
+  }
+}
 
 function login() {
   const dataValue = $(this).attr('data-form-button')

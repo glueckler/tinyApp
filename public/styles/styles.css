@@ -70,6 +70,12 @@ footer {
   margin-top: 1em;
 }
 
+.border-bottom {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
 .container {
   margin: 0 auto;
 }
@@ -91,6 +97,11 @@ footer {
   margin-bottom: 20px;
 }
 
+.urls-list__short-url {
+    font-weight: 200;
+    font-size: .4em;
+  }
+
 .urls-list li {
     padding-top: .3em;
     -webkit-transition: all .1s ease-out;
@@ -103,6 +114,10 @@ footer {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
 }
+
+.urls-list__url {
+    margin-top: .5em;
+  }
 
 .form {
   border-bottom: 2px solid #eee;
@@ -168,6 +183,11 @@ footer {
   background: rgba(255,255,255, 0.2);
   opacity: 1;
 }
+
+.error__message {
+    color: red;
+    margin-top: 7px;
+  }
 
 
 

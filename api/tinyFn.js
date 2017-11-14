@@ -1,8 +1,7 @@
 const rndStr    = require('randomstring')
-const siteURL   = process.env.SITE_URL;
+const siteURL   = process.env.SITE_URL
 
 require('dotenv').config()
-
 
 function tinyFn(data) {
   const tinyFn = {}
@@ -13,21 +12,36 @@ function tinyFn(data) {
     return siteURL + key
   }
 
-  tinyFn.shortUrlsList = function(usr) {
-    const list = []
-    let usrList;
-    for (url in data.urls) {
+  tinyFn.longUrl = function(urlId) {
+    return 'https://' + data.urls[urlId].longUrl
+  }
+
+  tinyFn.UrlsList = function(usr) {
+    const fullList = []
+    // usrList should be falsy if usr doesn't exist
+    let usrList
+
+    for (let url in data.urls) {
       url = data.urls[url]
       if (usr && url.userLink === usr.id) {
         usrList = usrList || []
-        usrList.push(tinyFn.shortUrl(url.urlId))
+        usrList.push({
+          shortUrl: tinyFn.shortUrl(url.urlId),
+          longUrl: url.longUrl,
+          id: url.urlId
+        })
         continue
       }
-      list.push(tinyFn.shortUrl(url.urlId))
+      fullList.push({
+        shortUrl: tinyFn.shortUrl(url.urlId),
+        longUrl: url.longUrl,
+        id: url.urlId
+      })
     }
+
     return {
       usrList,
-      list
+      fullList
     }
   }
 
@@ -35,23 +49,37 @@ function tinyFn(data) {
     return urls[id]
   }
 
-  tinyFn.createUrl = function(longURL, userLink) {
+  tinyFn.createUrl = function(longUrl, userLink) {
     const id = rndStr.generate(5)
-    console.log(userLink)
+    longUrl = longUrl.trim()
+    const https = longUrl.indexOf('https://')
+    const http = longUrl.indexOf('http://')
+    if (https !== -1) {
+      longUrl = longUrl.substr(8)
+      console.log('https')
+    } else if (http !== -1) {
+      console.log('http')
+      longUrl = longUrl.substr(7)
+    }
+    console.log(longUrl)
     urls[id] = {
       userLink,
-      longURL,
+      longUrl,
       urlId: id,
     }
     return urls[id]
   }
 
-  tinyFn.editUrl = function(id, edit) {
-    urls[id].longURL = edit
+  tinyFn.editUrl = function(urlId, usr, edit) {
+    if ( usr && usr.id === data.urls[urlId].userLink ) {
+      urls[urlId].longUrl = edit
+    }
   }
 
-  tinyFn.deleteUrl = function(id) {
-    delete urls[id]
+  tinyFn.deleteUrl = function(urlId, usr) {
+    if ( usr && usr.id === data.urls[urlId].userLink ) {
+      delete urls[urlId]
+    }
   }
 
   tinyFn.findUserIdByEmail = function(email) {
@@ -75,7 +103,9 @@ function tinyFn(data) {
   tinyFn.register = function({ email, password, name }) {
     console.log(users)
     if (tinyFn.findUserIdByEmail(email)) {
-      return
+      return {error: 'Email already exists'}
+    } else if (!email, !password, !name) {
+      return {error: 'Yes I know it\'s hard, you can do it..'}
     }
     const id = rndStr.generate(5)
     users[id] = {
@@ -92,7 +122,7 @@ function tinyFn(data) {
   }
 
   tinyFn.checkCookie = function(req, res, next) {
-    usrCookie = req.cookies.usrId
+    let usrCookie = req.cookies.usrId
     res.locals.usr = users[usrCookie] ? users[usrCookie] : undefined
     next()
   }

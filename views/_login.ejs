@@ -16,6 +16,6 @@
     <div class="btn"><a href="/register">Register</a></div>
   </div>
   <% if (locals.loginError) {%>
-    <div style="color: red; margin-top: 7px;"><%= locals.loginError[0] %></div>
+    <div class="error__message"><%= locals.loginError[0] %></div>
   <%}%>
 <% } -%>

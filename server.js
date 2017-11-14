@@ -8,7 +8,7 @@ const session   = require('express-session')
 const morgan    = require('morgan')
 const flash     = require('connect-flash')
 
-const data  = require('./db/fakedata')
+const data      = require('./db/fakedata')
 const tinyFn    = fn(data)
 
 app.set('view engine', 'ejs')
@@ -30,9 +30,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/urls', (req, res) => {
-  const shortUrlsList = tinyFn.shortUrlsList(res.locals.usr)
+  const urlsList = tinyFn.UrlsList(res.locals.usr)
   res.locals.loginError = req.flash('loginError')
-  res.render('urls', {shortUrlsList, urls: tinyFn.urls})
+  res.render('urls', {urlsList})
+  // res.render('urls', {UrlsList, urls: tinyFn.urls})
 })
 
 app.post('/urls', (req, res) => {
@@ -40,19 +41,25 @@ app.post('/urls', (req, res) => {
   res.redirect('/')
 })
 
+app.get('/:url', (req, res) => {
+  res.redirect(tinyFn.longUrl(req.params.url))
+})
+
 app.get('/:url/editurl', (req, res) => {
   const urlId = req.params.url
   const url = tinyFn.getUrlObj(urlId)
+  url.shortUrl = process.env.SITE_URL + url.urlId
+  console.log(url)
   res.render('edit-url', { url })
 })
 
 app.post('/:url/editurl', (req, res) => {
-  tinyFn.editUrl(req.params.url, req.body.edit)
+  tinyFn.editUrl(req.params.url, res.locals.usr, req.body.edit)
   res.redirect(`/${req.params.url}/editurl`)
 })
 
 app.post('/:url/delete', (req, res) => {
-  tinyFn.deleteUrl(req.params.url)
+  tinyFn.deleteUrl(req.params.url, res.locals.usr)
   res.redirect('/')
 })
 
@@ -70,14 +77,15 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/register', (req, res) => {
+  res.locals.registerError = req.flash('registerError')
   res.status(200).render('register')
 })
 
 app.post('/register', (req, res) => {
-  const { email, password, name } = req.body
   const user = tinyFn.register(req.body)
-  if (!user) {
-    res.status(404).send('registration fucked up')
+  if (user.error) {
+    req.flash('registerError', user.error)
+    res.redirect('/register')
   } else {
     tinyFn.setCookie(res, user.id)
     res.redirect('/')
@@ -87,7 +95,6 @@ app.post('/register', (req, res) => {
 app.post('/logout', (req, res) => {
   res.clearCookie('usrId').redirect('/')
 })
-
 
 const PORT = process.env.PORT || 8080;
 

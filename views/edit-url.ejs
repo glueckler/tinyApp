@@ -1,17 +1,25 @@
 <% include ./_head %>
 <% include ./_logo %>
 
+<% if (locals.usr && locals.usr.id === url.userLink) {%>
 <h2>Edit URL</h2>
 <div class="form form__edit-url">
   <form id="edit-url" method="POST">
-    <input class="form__input" data-form-input="edit-url" type="text" name="edit" value="<%= url.longURL %>" autocomplete="off" autofocus>
+    <input class="form__input" data-form-input="edit-url" type="text" name="edit" value="<%= url.longUrl %>" placeholder="<%= url.longUrl %>"  autocomplete="off" autofocus>
   </form>
-  <div><a class="hover-underline" target="blank" href="<%= url.longURL %>">(test link)</a></div>
+  <div><a class="hover-underline" target="blank" href="http://<%= url.longUrl %>">(test link)</a></div>
   <div class="btn" data-form-button="edit-url">Edit</div>
   <form id="delete-url" action="./delete" method="POST">
   </form>
   <div class="btn" data-form-button="delete-url">Delete</div>
 </div>
+<%} else {%>
+<div class="border-bottom">
+  <h2><%= url.longUrl %></h2>
+  <h2><%= url.shortUrl %></h2>
+  <div><a class="hover-underline" target="blank" href="http://<%= url.longUrl %>">(test link)</a></div>
+</div>
+<%}%>
 
 <% include ./_login %>
 <% include ./_footer %>

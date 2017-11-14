@@ -5,17 +5,23 @@
   <div>
     <h2>All URLs</h2>
     <ul>
-      <% for ( url of shortUrlsList.list ) { -%>
-        <li><a href="<%= url %>/editurl"><%=url%></a></li>
+      <% for ( url of urlsList.fullList ) { -%>
+        <li class="urls-list__url"><a href="<%= url.id %>/editurl">
+          <div class="urls-list__long-url"><%= url.longUrl %></div>
+          <div class="urls-list__short-url"><%=url.shortUrl %></div>
+        </a></li>
       <% } -%>
     </ul>
   </div>
-  <% if (shortUrlsList.usrList) { -%>
+  <% if (urlsList.usrList) { -%>
     <div>
       <h2>Personal URLs</h2>
       <ul>
-        <% for ( url of shortUrlsList.usrList ) { -%>
-          <li><%= url %></li>
+        <% for ( url of urlsList.usrList ) { -%>
+          <li class="urls-list__url"><a href="<%= url.id %>/editurl">
+            <div class="urls-list__long-url"><%= url.longUrl %></div>
+            <div class="urls-list__short-url"><%=url.shortUrl %></div>
+          </a></li>
         <% } -%>
       </ul>
     </div>
