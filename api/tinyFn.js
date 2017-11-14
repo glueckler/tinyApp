@@ -26,18 +26,20 @@ function tinyFn(data) {
 
     for (let url in data.urls) {
       url = data.urls[url]
+      const shortUrl = tinyFn.shortUrl(url.urlId)
+      const longUrl = url.longUrl
       if (usr && url.userLink === usr.id) {
         usrList = usrList || []
         usrList.push({
-          shortUrl: tinyFn.shortUrl(url.urlId),
-          longUrl: url.longUrl,
+          shortUrl,
+          longUrl,
           id: url.urlId
         })
         continue
       }
       fullList.push({
-        shortUrl: tinyFn.shortUrl(url.urlId),
-        longUrl: url.longUrl,
+        shortUrl,
+        longUrl,
         id: url.urlId
       })
     }
