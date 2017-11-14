@@ -28,7 +28,7 @@
 }
 
 body {
-  font-family: Memphis-med;
+  font-family: Courier;
   color: #eee;
   text-align: center;
   background: #6eb5a1;
@@ -53,7 +53,21 @@ li {
 
 a {
   text-decoration: none;
-  color: #eee;
+  color: #eee
+}
+
+a.hover-underline {
+  border-bottom: 2px solid transparent
+}
+
+a.hover-underline:hover {
+  border-color: #eee;
+}
+
+footer {
+  font-size: 12.8px;
+  font-size: .8rem;
+  margin-top: 1em;
 }
 
 .container {
@@ -67,7 +81,36 @@ a {
 }
   }
 
-.login-form__input {
+.header {
+  margin-bottom: 2em;
+}
+
+.urls-list {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.urls-list li {
+    padding-top: .3em;
+    -webkit-transition: all .1s ease-out;
+    transition: all .1s ease-out;
+    border-bottom: 1px solid transparent
+  }
+
+.urls-list li:hover {
+  border-color: rgba(238,238,238, 0.5);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+}
+
+.form {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.form__input {
     font-size: 16px;
     font-size: 1rem;
     color: #eee;
@@ -80,40 +123,50 @@ a {
     background: transparent
   }
 
-.login-form__input:focus {
+.form__input:focus {
   outline: none;
   border-bottom: 2px solid;
     -webkit-animation: pulse 2s infinite;
             animation: pulse 2s infinite
 }
 
-.login-form__input:focus::-webkit-input-placeholder {
+.form__input:focus::-webkit-input-placeholder {
   text-align: center;
   opacity: 1;
   -webkit-transition: all 1s ease-out;
   transition: all 1s ease-out;
 }
 
-.login-form ::-webkit-input-placeholder {
+.form ::-webkit-input-placeholder {
     color: #eee;
     text-align: center;
     opacity: .5;
   }
 
 .btn {
-  padding: 5px 0;
-  width: 5em;
-  display: inline-block;
+  font-size: .8em;
+  padding: 6px;
+  width: 5.5em;
+  display: block;
+  margin: 14px auto 0;
   color: #eee;
   background: transparent;
   border: solid 2px #eee;
+  opacity: 0.6;
   -webkit-transition: all .15s ease-out;
   transition: all .15s ease-out;
-  cursor: pointer
+  cursor: pointer;
 }
 
+.btn--auto-width {
+    width: auto;
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+
 .btn:hover {
-  background: rgba(255,255,255, 0.2)
+  background: rgba(255,255,255, 0.2);
+  opacity: 1;
 }
 
 

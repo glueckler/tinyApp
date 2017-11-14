@@ -1,14 +1,13 @@
 <%include ./_head%>
 <%include ./_logo%>
 
-<form action="/register" method="POST">
-  <label for="name">Name</label>
-  <input type="text" name="name" placeholder="Kanteen">
-  <label for="email">Email</label>
-  <input type="text" name="email" placeholder="email@email.com">
-  <label for="password">Password</label>
-  <input type="password" name="password">
-  <input type="submit" value="register">
-</form>
+<div class="form form__register">
+  <form id="register" action="/register" method="POST">
+    <input class="form__input" data-form-input="register" type="text" name="name" placeholder="name" autocomplete="off">
+    <input class="form__input" data-form-input="register" type="text" name="email" placeholder="email" autocomplete="off">
+    <input class="form__input" data-form-input="register" type="password" name="password" placeholder="password" autocomplete="off">
+  </form>
+  <div class="btn" data-form-button="register">Register</div>
+</div>
 
 <%include ./_footer%>

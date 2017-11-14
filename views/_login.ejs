@@ -1,16 +1,19 @@
 <% if (locals.usr) { -%>
-  <div>Helloooooo <%= usr.name %></div>
-  <form action="/logout" method="POST">
-    <input type="submit" value="logout">
-  </form>
-<% } else { -%>
-  <div class="login-form">
-    <form action="/login" method="POST">
-      <input class="login-form__input" data-login="email" type="text" name="email" placeholder="email" autocomplete="off">
-      <input class="login-form__input" data-login="password" type="password" name="password" placeholder="password" autocomplete="off">
+  <div class="form">
+    <h2><%= usr.name %></h2>
+    <form id="logout" data-form="logout" action="/logout" method="POST">
     </form>
-    <div class="btn" data-login="submit">Login</div>
-    <a href="/register"><div class="btn">Register</div></a>
+    <div class="btn" data-form-button="logout">Logout</div>
+  </div>
+<% } else { -%>
+  <div class="form form__login">
+    <h2>Login</h2>
+    <form id="login" action="/login" method="POST">
+      <input class="form__input" data-form-input="login" type="text" name="email" placeholder="email" autocomplete="off">
+      <input class="form__input" data-form-input="login" type="password" name="password" placeholder="password" autocomplete="off">
+    </form>
+    <div class="btn" data-form-button="login">Login</div>
+    <div class="btn"><a href="/register">Register</a></div>
   </div>
   <% if (locals.loginError) {%>
     <div style="color: red; margin-top: 7px;"><%= locals.loginError[0] %></div>

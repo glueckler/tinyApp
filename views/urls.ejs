@@ -1,12 +1,8 @@
 <% include ./_head %>
 <% include ./_logo %>
-<% include ./_login %>
 
-<% if (locals.usr) { -%>
-  <section> <%include ./_create-url%> </section>
-<% } -%>
 <section class="urls-list">
-  <div class="urls-all">
+  <div>
     <h2>All URLs</h2>
     <ul>
       <% for ( url of shortUrlsList.list ) { -%>
@@ -15,7 +11,7 @@
     </ul>
   </div>
   <% if (shortUrlsList.usrList) { -%>
-    <div class="urls-user">
+    <div>
       <h2>Personal URLs</h2>
       <ul>
         <% for ( url of shortUrlsList.usrList ) { -%>
@@ -25,6 +21,10 @@
     </div>
   <% } -%>
 </section>
+<% if (locals.usr) { -%>
+  <section> <%include ./_create-url%> </section>
+<% } -%>
 
+<% include ./_login %>
 <%include ./_footer%>
 

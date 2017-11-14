@@ -1,20 +1,29 @@
 $(() => {
 
-  function resizeInput() {
+  function formInput(input) {
     let width
-    width = Math.floor($(this).val().length * 7.9)
+    width = Math.floor($(this).val().length * 8.4)
     $(this).css('width', width)
+    if (input.which === 13) {
+      submitForm($(this).attr('data-form-input'))
+    }
+
   }
 
-  $('.login-form__input')
-    .keyup(resizeInput)
-    .each(resizeInput)
+  $('.form__input')
+    .keyup(formInput)
+    .each(formInput)
 
-  $('[data-login="submit"]')
+  $('[data-form-button]')
     .on('click', login)
 
 })
 
 function login() {
-  $('.login-form > form').submit()
+  const dataValue = $(this).attr('data-form-button')
+  submitForm(dataValue)
+}
+
+function submitForm(formName) {
+  $('#'+ formName).submit()
 }
