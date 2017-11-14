@@ -4,4 +4,7 @@
     <input type="text" class="form__input" data-form-input="create-url" name="url" autocomplete="off" placeholder="New URL">
   </form>
   <div class="btn" data-form-button="create-url">Add URL</div>
+  <% if (locals.creationError) {%>
+    <div class="error__message"><%= locals.creationError[0] %></div>
+  <%}%>
 </div>

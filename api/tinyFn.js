@@ -1,5 +1,6 @@
 const rndStr    = require('randomstring')
 const siteURL   = process.env.SITE_URL
+const bcrypt    = require('bcrypt')
 
 require('dotenv').config()
 
@@ -13,7 +14,9 @@ function tinyFn(data) {
   }
 
   tinyFn.longUrl = function(urlId) {
-    return 'https://' + data.urls[urlId].longUrl
+    if (data.urls[urlId]) {
+      return 'https://' + data.urls[urlId].longUrl
+    }
   }
 
   tinyFn.UrlsList = function(usr) {
@@ -52,16 +55,16 @@ function tinyFn(data) {
   tinyFn.createUrl = function(longUrl, userLink) {
     const id = rndStr.generate(5)
     longUrl = longUrl.trim()
+    if (longUrl.indexOf(' ') !== -1) {
+      return
+    }
     const https = longUrl.indexOf('https://')
     const http = longUrl.indexOf('http://')
     if (https !== -1) {
       longUrl = longUrl.substr(8)
-      console.log('https')
     } else if (http !== -1) {
-      console.log('http')
       longUrl = longUrl.substr(7)
     }
-    console.log(longUrl)
     urls[id] = {
       userLink,
       longUrl,
@@ -92,38 +95,44 @@ function tinyFn(data) {
     return undefined
   }
 
-  tinyFn.validate = function({ email, password }) {
+  tinyFn.validateLogin = function({ email, password }) {
     const usrId = tinyFn.findUserIdByEmail(email)
     if (!usrId) { return }
-    if (password === users[usrId].password) {
+    if (bcrypt.compareSync(password, users[usrId].password)) {
       return users[usrId]
     }
   }
 
   tinyFn.register = function({ email, password, name }) {
-    console.log(users)
+    email = email.trim()
+    password = password.trim()
+    name = name.trim()
     if (tinyFn.findUserIdByEmail(email)) {
       return {error: 'Email already exists'}
     } else if (!email, !password, !name) {
       return {error: 'Yes I know it\'s hard, you can do it..'}
+    } else if (email.indexOf(' ') !== -1) {
+      return {error: 'Somethings weird about your email..'}
     }
     const id = rndStr.generate(5)
     users[id] = {
       id,
       name,
       email,
-      password
+      password: bcrypt.hashSync(password, 7)
     }
-    return tinyFn.validate({ email, password })
+    return tinyFn.validateLogin({ email, password })
   }
 
-  tinyFn.setCookie = function(res, id) {
-    res.cookie('usrId', id)
+  tinyFn.setCookie = function(req, res, usrId) {
+    req.session.usrId = usrId
   }
 
   tinyFn.checkCookie = function(req, res, next) {
-    let usrCookie = req.cookies.usrId
-    res.locals.usr = users[usrCookie] ? users[usrCookie] : undefined
+    if (req.session) {
+      let usrCookie = req.session.usrId
+      res.locals.usr = users[usrCookie] ? users[usrCookie] : undefined
+    }
     next()
   }
 
