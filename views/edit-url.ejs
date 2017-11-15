@@ -7,6 +7,7 @@
   <form id="edit-url" method="POST">
     <input class="form__input" data-form-input="edit-url" type="text" name="edit" value="<%= url.longUrl %>" placeholder="<%= url.longUrl %>"  autocomplete="off" autofocus>
   </form>
+  <h2><%= url.shortUrl %></h2>
   <div><a class="hover-underline" target="blank" href="http://<%= url.longUrl %>">(test link)</a></div>
   <div class="btn" data-form-button="edit-url">Edit</div>
   <form id="delete-url" action="./delete" method="POST">

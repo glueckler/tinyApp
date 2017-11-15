@@ -1,5 +1,3 @@
-let initFormWidth
-
 $(() => {
 
   $('.form__input')
@@ -15,8 +13,18 @@ $(() => {
 
 })
 
+let initFormWidth
 function formInput(input) {
-  let width = $(this).val().length * 9.5
+  const stringLength = $(this).val().length
+  let width
+  if ($(this).has('#edit-url')) {
+    const fontSize = (30 / stringLength) + 'rem'
+    $(this).css('font-size', stringLength < 30 ? '1rem' : fontSize)
+    console.log('here')
+    width = stringLength * 5.3
+  } else {
+    width = stringLength * 9.5
+  }
   initFormWidth = initFormWidth || width
   $(this).css('width', initFormWidth > width ? initFormWidth : width)
   if (input.which === 13) {
