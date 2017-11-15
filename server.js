@@ -4,7 +4,6 @@ const app       = require('express')()
 const fn        = require('./api/tinyFn')
 const body      = require('body-parser')
 const cookieP   = require('cookie-parser')
-// const session   = require('express-session')
 const morgan    = require('morgan')
 const flash     = require('connect-flash')
 const cookieSes = require('cookie-session')
@@ -18,9 +17,6 @@ app.use(express.static('public'))
 app.use(morgan('tiny'))
 app.use(body.urlencoded({extended: true}))
 app.use(cookieP('keyboard cat'))
-// app.use(session({
-//   secret: process.env.SESSION_SECRET
-// }))
 app.use(cookieSes({
   name: 'session',
   secret: process.env.COOKIE_SESSION_SECRET
@@ -63,6 +59,7 @@ app.post('/urls', (req, res) => {
 })
 
 app.get('/:url/editurl', (req, res) => {
+  console.log(req.params.url)
   const urlId = req.params.url
   const url = tinyFn.getUrlObj(urlId)
   url.shortUrl = process.env.SITE_URL + url.urlId

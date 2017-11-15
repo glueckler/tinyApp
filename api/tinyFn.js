@@ -50,8 +50,9 @@ function tinyFn(data) {
     }
   }
 
-  tinyFn.getUrlObj = function(id) {
-    return urls[id]
+  tinyFn.getUrlObj = function(urlId) {
+    console.log(urlId)
+    return urls[urlId]
   }
 
   tinyFn.createUrl = function(longUrl, userLink) {
@@ -98,6 +99,7 @@ function tinyFn(data) {
   }
 
   tinyFn.validateLogin = function({ email, password }) {
+    console.log(email, password)
     const usrId = tinyFn.findUserIdByEmail(email)
     if (!usrId) { return }
     if (bcrypt.compareSync(password, users[usrId].password)) {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "nodemon --watch api --watch server.js server.js 3000",
+    "dev:server": "nodemon --watch api --watch db --watch server.js server.js 3000",
     "dev:watchCss": "chokidar 'styles/**/*.css' -c 'npm run css:buildDev && npm run heart'",
     "dev:bs": "./node_modules/.bin/browser-sync start -c ./bs-config.js",
     "css:buildDev": "postcss styles/styles.css -o public/styles/styles.css -c ./postcss.config.js",

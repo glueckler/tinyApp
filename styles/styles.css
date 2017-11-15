@@ -74,6 +74,7 @@ footer {
 
 .container {
   margin: 0 auto;
+  max-width: 400px;
 
   @mixin am {
     width: 100%;
@@ -84,12 +85,16 @@ footer {
   margin-bottom: 2em;
 }
 
+.scaled-header {
+  overflow-wrap: break-word;
+}
+
 .urls-list {
   @mixin border-bottom;
 
   &__short-url {
     font-weight: 200;
-    font-size: .4em;
+    font-size: .7em;
   }
 
   li {
@@ -120,7 +125,7 @@ footer {
     margin: 0 auto 1.5em;
     text-align: center;
     caret-color: transparent;
-    background: transparent;
+    background: rgba(#fff, .2);
 
     &:focus {
       outline: none;

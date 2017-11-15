@@ -78,6 +78,7 @@ footer {
 
 .container {
   margin: 0 auto;
+  max-width: 400px;
 }
 
 @media (max-width: 600px) {
@@ -91,6 +92,10 @@ footer {
   margin-bottom: 2em;
 }
 
+.scaled-header {
+  word-wrap: break-word;
+}
+
 .urls-list {
   border-bottom: 2px solid #eee;
   padding-bottom: 20px;
@@ -99,7 +104,7 @@ footer {
 
 .urls-list__short-url {
     font-weight: 200;
-    font-size: .4em;
+    font-size: .7em;
   }
 
 .urls-list li {
@@ -135,7 +140,7 @@ footer {
     margin: 0 auto 1.5em;
     text-align: center;
     caret-color: transparent;
-    background: transparent
+    background: rgba(255,255,255, .2)
   }
 
 .form__input:focus {

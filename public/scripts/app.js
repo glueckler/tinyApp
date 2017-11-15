@@ -9,6 +9,10 @@ $(() => {
   $('[data-form-button]')
     .on('click', login)
 
+  $sHeader = $('.scaled-header')
+  const sHeaderVal = $sHeader.text()
+  $sHeader.css('font-size', scaledFontSize(sHeaderVal))
+
 })
 
 function formInput(input) {
@@ -27,4 +31,15 @@ function login() {
 
 function submitForm(formName) {
   $('#'+ formName).submit()
+}
+
+function scaledFontSize(string) {
+  const l = string.length
+  if (l < 30) {
+    return '1.4em'
+  } else if (l > 100) {
+    return '.9em'
+  } else {
+    return ((0.9) + (70 - (l - 30)) * (0.5 / 70) ).toString() + 'em'
+  }
 }
