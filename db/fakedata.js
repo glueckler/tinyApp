@@ -23,7 +23,7 @@ module.exports = {
   },
   users: {
     'rdsgz': {
-      name: 'John Deen',
+      name: 'Jack Black',
       id: 'rdsgz',
       email: 'you@you.you',
       password: '$2a$07$yEx1n0RpH1NOp5tMn2MuIuBTImPhtoWRXK0jYhXg9oCaTXe7t.Qi.'
