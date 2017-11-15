@@ -1,5 +1,6 @@
 const rndStr    = require('randomstring')
-const siteURL   = process.env.SITE_URL
+// const siteURL   = process.env.SITE_URL
+const siteURL   = 'tnyurl.io/'
 const bcrypt    = require('bcrypt')
 
 require('dotenv').config()

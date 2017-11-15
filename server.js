@@ -19,7 +19,8 @@ app.use(body.urlencoded({extended: true}))
 app.use(cookieP('keyboard cat'))
 app.use(cookieSes({
   name: 'session',
-  secret: process.env.COOKIE_SESSION_SECRET
+  // secret: process.env.COOKIE_SESSION_SECRET
+  secret: 'this is not a secret'
 }))
 app.use(flash())
 
@@ -43,6 +44,7 @@ app.get('/urls', (req, res) => {
   const urlsList = tinyFn.UrlsList(res.locals.usr)
   res.locals.creationError = req.flash('creationError')
   res.locals.loginError = req.flash('loginError')
+  console.log(urlsList)
   res.status('200').render('urls', {urlsList})
 })
 
@@ -62,7 +64,8 @@ app.get('/:url/editurl', (req, res) => {
   console.log(req.params.url)
   const urlId = req.params.url
   const url = tinyFn.getUrlObj(urlId)
-  url.shortUrl = process.env.SITE_URL + url.urlId
+  url.shortUrl = 'tnyurl.io/' + url.urlId
+  // url.shortUrl = process.env.SITE_URL + url.urlId
   res.render('edit-url', { url })
 })
 
