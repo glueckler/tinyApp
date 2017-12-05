@@ -1,12 +1,18 @@
 # Tny App
 
-So I made this fun url shortener while in class at Lighthouse Labs.
+Visit the demo site [here](https://tnyapp.herokuapp.com/urls)
 
-Unfortunately the current url is much longer than the urls you'd like to save
+![tiny app gif](https://github.com/glueckler/tinyApp/blob/master/tnyapp.gif)
 
-I think it's a great proof of concept though, right?
+TnyApp is a bitly like URL shortener.
 
-## Dependancies
+Featuring:
+
+- user registration and login,
+- editing, adding, removing, and testing personal URLs
+- browsing a list of all urls
+
+## Stack
 
 - Express
 - EJS
